@@ -1,0 +1,12 @@
+IMPORTANT:
+
+In the array containing the content scripts in the manifest, the following
+order must be preserved if new files are created.
+
+["settings.js",
+ "mlModel.js",
+ <ALL MACHINE LEARNING FILES>,
+ "module.js",
+ <ALL MODULE FILES>,
+ "moduleFactory.js",
+ "main.js"]
