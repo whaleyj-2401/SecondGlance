@@ -19,13 +19,13 @@
         {
             "matches" : ["*://*/*"],
             "run_at": "document_start",
-            "js" : ["settings.js",
-                    "module.js",
-                    "adBlocker.js",
-                    "featureRemover.js",
-                    "textScanner.js",
-                    "moduleFactory.js",
-                    "main.js"]
+            "js" : ["settings/settings.js",
+                    "scripts/module.js",
+                    "scripts/adBlocker.js",
+                    "scripts/featureRemover.js",
+                    "scripts/textScanner.js",
+                    "scripts/moduleFactory.js",
+                    "scripts/main.js"]
         }
     ]
 }
