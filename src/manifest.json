@@ -1,0 +1,31 @@
+{
+    "manifest_version": 2,
+    "name": "SecondGlance",
+    "description": "A unified content filter.",
+    "version": "1.0",
+
+    "browser_specific_settings":
+    {
+        "gecko": {
+            "id": "@second-glance-unif"
+        }
+    },
+
+    "icons" : {
+        "48" : "icons/second_glance_logo_2.png"
+    },
+
+    "content_scripts" : [
+        {
+            "matches" : ["*://*/*"],
+            "run_at": "document_start",
+            "js" : ["settings.js",
+                    "module.js",
+                    "adBlocker.js",
+                    "featureRemover.js",
+                    "textScanner.js",
+                    "moduleFactory.js",
+                    "main.js"]
+        }
+    ]
+}
