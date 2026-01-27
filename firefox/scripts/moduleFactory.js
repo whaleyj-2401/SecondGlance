@@ -36,4 +36,46 @@ class ModuleFactory
                 break;
         }
     }
+
+    getModuleOptions(moduleNo)
+    {
+        var module;
+
+        switch(moduleNo)
+        {
+            case 0:
+                module = new AdBlocker();
+                break;
+            case 1:
+                module = new FeatureRemover();
+                break;
+            case 2:
+                module = new TextScanner();
+                break;
+            default:
+                return null;
+                break;
+        }
+
+        return module.options;
+    }
+
+    static getModuleNo(moduleName)
+    {
+        switch(moduleName)
+        {
+            case "AdBlocker":
+                return 0;
+                break;
+            case "FeatureRemover":
+                return 1;
+                break;
+            case "TextScanner":
+                return 2;
+                break;
+            default:
+                return null;
+                break;
+        }
+    }
 }
