@@ -18,6 +18,8 @@ class AdBlocker extends Module
     }
     */
 
+    super();
+
     constructor()
     {
         this.options =
