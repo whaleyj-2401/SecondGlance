@@ -5,6 +5,7 @@
  */
 class AdBlocker extends Module
 {
+    /*
     setSettings(settings) 
     {   
         // If the settings object is not valid, log an error and return.
@@ -14,6 +15,31 @@ class AdBlocker extends Module
         }
 
         this.settings = settings;
+    }
+    */
+
+    constructor()
+    {
+        this.options =
+        {
+            blockAll : {
+                "type" : "select_exclusive",
+                "Block all" : true,
+                "Don't block all" : false
+            },
+
+            blockPopups : {
+                "type" : "select_exclusive",
+                "Block popups" : true,
+                "Don't block popups" : false
+            },
+
+            blockBanners : {
+                "type" : "select_exclusive",
+                "Block banners" : true,
+                "Don't block banners" : false
+            }
+        }
     }
 
     scanPage()
