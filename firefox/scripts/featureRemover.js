@@ -5,12 +5,24 @@
  */
 class FeatureRemover extends Module
 {
-    scanPage()
+    constructor()
     {
-        // TODO: Implement this function.
+        super();
+
+        this.options = {
+
+            moduleName : "Feature Remover",
+
+            isAggressive : {
+                "type" : "select_exclusive",
+                "default" : false,
+                "Aggressive" : true,
+                "Passive" : false
+            }
+        }
     }
 
-    setSettings(settings)
+    scanPage()
     {
         // TODO: Implement this function.
     }

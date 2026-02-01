@@ -4,6 +4,9 @@
  * Abstract class from which all modules (Adblocker, text scanner, etc) are
  * derived.
  */
+// This file contains the Module abstract class.
+// Code by James Whaley.
+
 class Module
 {
     constructor()
@@ -14,23 +17,19 @@ class Module
         }
     }
 
+    getOptions()
+    {
+        return { ...Module.generalOptions, ...this.options };
+    }
+
     // settingsIsValid
     // Checks if a given settings object has the minimum required attributes
     // to be considered a settings object. Should probably be called in
     // setSettings().
     static settingsIsValid(settings, keys)
     {
-        /* For a settings object to be valid, it must contain at least the
-         * following attributes:
-         * moduleName
-         * enabled
-         * whitelistEnabled
-         * whitelist
-         * urlList
-         */
-
         let isValid = true;
-        let validKeysSuper = ["moduleName", "enabled", "whitelistEnabled", "whitelist", "urlList"];
+        let validKeysSuper = Object.keys(Module.generalOptions);
         let validKeys = validKeysSuper.concat(keys);
         let settingsKeys = Object.keys(settings);
 
@@ -43,6 +42,35 @@ class Module
         })
 
         return isValid;
+    }
+
+    static generalOptions =
+    {
+        enabled : {
+            "type" : "select_exclusive",
+            "default" : true,
+            "Enabled" : true,
+            "Disabled" : false
+        },
+
+        urlListEnabled : {
+            "type" : "select_exclusive",
+            "default" : true,
+            "Enabled" : true,
+            "Disabled" : false
+        },
+
+        urlList : {
+            "type" : "text_list",
+            "default" : [],
+        },
+
+        isWhitelist : {
+            "type" : "select_exclusive",
+            "default" : true,
+            "Whitelist" : true,
+            "Blacklist" : false
+        },
     }
 
     setSettings(settings)

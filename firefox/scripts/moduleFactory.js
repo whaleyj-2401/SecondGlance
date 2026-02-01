@@ -13,6 +13,11 @@ class ModuleFactory
         this.maxModules = 3;
     }
 
+    getMaxModules()
+    {
+        return this.maxModules;
+    }
+
     // createModule
     // Function which takes a number and produces the corresponding module.
     // Returns null if invalid number is given.
@@ -39,7 +44,7 @@ class ModuleFactory
 
     getModuleOptions(moduleNo)
     {
-        var module;
+        let module;
 
         switch(moduleNo)
         {
@@ -57,25 +62,54 @@ class ModuleFactory
                 break;
         }
 
-        return module.options;
+        return module.getOptions();
     }
 
-    static getModuleNo(moduleName)
+    getModuleNo(moduleName)
     {
         switch(moduleName)
         {
-            case "AdBlocker":
+            case "Ad Blocker":
                 return 0;
                 break;
-            case "FeatureRemover":
+            case "Feature Remover":
                 return 1;
                 break;
-            case "TextScanner":
+            case "Text Scanner":
                 return 2;
                 break;
             default:
                 return null;
                 break;
         }
+    }
+
+    getModuleName(moduleNo)
+    {
+        let module;
+        let name;
+
+        switch(moduleNo)
+        {
+            case 0:
+                module = new AdBlocker();
+                name = module.getOptions().moduleName;
+                break;
+            case 1:
+                module = new FeatureRemover();
+                name = module.getOptions().moduleName;
+                break;
+            case 2:
+                module = new TextScanner();
+                name = module.getOptions().moduleName;
+                break;
+            default:
+                return null;
+                break;
+
+
+        }
+
+        return name;
     }
 }
