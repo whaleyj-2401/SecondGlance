@@ -1,5 +1,5 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "SecondGlance",
     "description": "A unified content filter.",
     "version": "1.0",
@@ -15,6 +15,27 @@
         "48" : "icons/second_glance_logo_2.png"
     },
 
+    "options_ui" : {
+        "page" : "settings/settings_page.html"
+    },
+
+    "permissions" : [
+        "storage"
+    ],
+
+    "background" : {
+        "scripts" : [
+            "scripts/module.js",
+            "scripts/adBlocker.js",
+            "scripts/featureRemover.js",
+            "scripts/textScanner.js",
+            "scripts/testModule.js",
+            "scripts/moduleFactory.js",
+            "scripts/init.js"
+        ],
+        "persistent" : false
+    },
+
     "content_scripts" : [
         {
             "matches" : ["*://*/*"],
@@ -25,6 +46,7 @@
                     "scripts/adBlocker.js",
                     "scripts/featureRemover.js",
                     "scripts/textScanner.js",
+                    "scripts/testModule.js",
                     "scripts/moduleFactory.js",
                     "scripts/main.js"]
         }
