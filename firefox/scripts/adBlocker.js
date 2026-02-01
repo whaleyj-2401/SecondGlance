@@ -24,20 +24,25 @@ class AdBlocker extends Module
         
         this.options =
         {
+            moduleName : "Ad Blocker",
+
             blockAll : {
                 "type" : "select_exclusive",
+                "default" : true,
                 "Block all" : true,
                 "Don't block all" : false
             },
 
             blockPopups : {
                 "type" : "select_exclusive",
+                "default" : true,
                 "Block popups" : true,
                 "Don't block popups" : false
             },
 
             blockBanners : {
                 "type" : "select_exclusive",
+                "default" : true,
                 "Block banners" : true,
                 "Don't block banners" : false
             }
