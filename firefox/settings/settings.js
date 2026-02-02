@@ -28,7 +28,7 @@ class Settings
         else
         {
             throw new Error(`Settings.getOptionsOf: Invalid type,
-                            must be string or number`)
+                             must be string or number`)
         }
 
         for (let option in options)
@@ -106,11 +106,12 @@ class Settings
                     document.getElementById("settings_form").innerHTML +=
 
                     `<label for="${id}">${option}: </label>
-                    <input type="text"
-                    id="${id}"
-                    name="${option + "_" + settings.moduleName}"
-                    value="${settings[option] ? settings[option] : ""}">
-                    <br>
+                     <input type="text"
+                            id="${id}"
+                            name="${option + "_" + settings.moduleName}"
+                            value="${settings[option] ?
+                                settings[option] : ""}">
+                     <br>
                     `;
 
                     break;
@@ -120,7 +121,7 @@ class Settings
                     document.getElementById("settings_form").innerHTML +=
 
                     `<label for="${id}">${option}: </label><br>
-                    <textarea id="${id}"></textarea>
+                     <textarea id="${id}"></textarea>
                     `;
 
                     settings[option].forEach((value) => {
@@ -146,14 +147,14 @@ class Settings
                         document.getElementById("settings_form").innerHTML +=
 
                         `<input type="radio"
-                        id="${id + opt.replaceAll(" ", "_")}"
-                        name="${option + "_" + settings.moduleName}"
-                        value=${opt.replaceAll(" ", "_")}
-                        ${options[option][opt] === settings[option] ?
-                            "checked" : ""}>
-                        <label for="${id + opt.replaceAll(" ", "_")}">
-                            ${opt}
-                        </label><br>
+                                id="${id + opt.replaceAll(" ", "_")}"
+                                name="${option + "_" + settings.moduleName}"
+                                value=${opt.replaceAll(" ", "_")}
+                                ${options[option][opt] === settings[option] ?
+                                    "checked" : ""}>
+                         <label for="${id + opt.replaceAll(" ", "_")}">
+                             ${opt}
+                         </label><br>
                         `;
                     }
 
@@ -175,14 +176,15 @@ class Settings
                         document.getElementById("settings_form").innerHTML +=
 
                         `<input type="checkbox"
-                        id="${id + opt.replaceAll(" ", "_")}"
-                        name="${option + "_" + settings.moduleName}"
-                        value=${opt.replaceAll(" ", "_")}
-                        ${settings[option].includes(options[option][opt]) ?
-                            "checked" : ""}>
-                        <label for="${id + opt.replaceAll(" ", "_")}">
-                            ${opt}
-                        </label><br>
+                                id="${id + opt.replaceAll(" ", "_")}"
+                                name="${option + "_" + settings.moduleName}"
+                                value=${opt.replaceAll(" ", "_")}
+                                ${settings[option].includes(
+                                    options[option][opt]) ?
+                                    "checked" : ""}>
+                         <label for="${id + opt.replaceAll(" ", "_")}">
+                             ${opt}
+                         </label><br>
                         `;
                     }
 
