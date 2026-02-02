@@ -32,8 +32,7 @@
             "scripts/testModule.js",
             "scripts/moduleFactory.js",
             "scripts/init.js"
-        ],
-        "persistent" : false
+        ]
     },
 
     "content_scripts" : [
