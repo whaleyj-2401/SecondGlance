@@ -3,11 +3,11 @@
 // Code by James Whaley
 
 /*
-==========
+ = =*========
  Settings
-==========
-This class consists of static functions
-*/
+ ==========
+ This class consists of static functions
+ */
 class Settings
 {
     static getOptionsOf(moduleId)
@@ -28,7 +28,7 @@ class Settings
         else
         {
             throw new Error(`Settings.getOptionsOf: Invalid type,
-                             must be string or number`)
+                            must be string or number`)
         }
 
         for (let option in options)
@@ -97,6 +97,8 @@ class Settings
             //
             let id = settings.moduleName + "_" + option + "_" + type;
 
+            id = id.replaceAll(" ", "_");
+
             switch (type)
             {
                 case "text":
@@ -104,11 +106,11 @@ class Settings
                     document.getElementById("settings_form").innerHTML +=
 
                     `<label for="${id}">${option}: </label>
-                     <input type="text"
-                            id="${id}"
-                            name="${option + "_" + settings.moduleName}"
-                            value="${settings[option] ? settings[option] : ""}">
-                            <br>
+                    <input type="text"
+                    id="${id}"
+                    name="${option + "_" + settings.moduleName}"
+                    value="${settings[option] ? settings[option] : ""}">
+                    <br>
                     `;
 
                     break;
@@ -118,7 +120,7 @@ class Settings
                     document.getElementById("settings_form").innerHTML +=
 
                     `<label for="${id}">${option}: </label><br>
-                     <textarea id="${id}"></textarea>
+                    <textarea id="${id}"></textarea>
                     `;
 
                     settings[option].forEach((value) => {
@@ -144,12 +146,14 @@ class Settings
                         document.getElementById("settings_form").innerHTML +=
 
                         `<input type="radio"
-                                id="${id + opt}"
-                                name="${option + "_" + settings.moduleName}"
-                                value=${opt}
-                                ${options[option][opt] === settings[option] ?
-                                    "checked" : ""}>
-                            <label for="${id}">${opt}</label><br>
+                        id="${id + opt.replaceAll(" ", "_")}"
+                        name="${option + "_" + settings.moduleName}"
+                        value=${opt.replaceAll(" ", "_")}
+                        ${options[option][opt] === settings[option] ?
+                            "checked" : ""}>
+                        <label for="${id + opt.replaceAll(" ", "_")}">
+                            ${opt}
+                        </label><br>
                         `;
                     }
 
@@ -171,12 +175,14 @@ class Settings
                         document.getElementById("settings_form").innerHTML +=
 
                         `<input type="checkbox"
-                                id="${id + opt}"
-                                name="${option + "_" + settings.moduleName}"
-                                value=${opt}
-                                ${settings[option].includes(options[option][opt]) ?
-                                    "checked" : ""}>
-                        <label for="${id}">${opt}</label><br>
+                        id="${id + opt.replaceAll(" ", "_")}"
+                        name="${option + "_" + settings.moduleName}"
+                        value=${opt.replaceAll(" ", "_")}
+                        ${settings[option].includes(options[option][opt]) ?
+                            "checked" : ""}>
+                        <label for="${id + opt.replaceAll(" ", "_")}">
+                            ${opt}
+                        </label><br>
                         `;
                     }
 
@@ -184,7 +190,7 @@ class Settings
 
                 default:
                     throw new Error(`Settings: Undefined type for module ${settings.moduleName}:
-                                     ${type}`);
+                    ${type}`);
 
                     break;
             }
@@ -217,12 +223,14 @@ class Settings
                 //
                 let id = options.moduleName + "_" + option + "_" + type;
 
+                id = id.replaceAll(" ", "_");
+
                 switch (options[option]["type"])
                 {
                     case "text":
 
-                            settings[option] =
-                            document.getElementById(`${id}`).value;
+                        settings[option] =
+                        document.getElementById(`${id}`).value;
 
                         break;
 
@@ -245,7 +253,8 @@ class Settings
                         elements.forEach((el) => {
                             if (el.checked)
                             {
-                                selectedValue = options[option][el.value];
+                                selectedValue =
+                                options[option][el.value.replaceAll("_", " ")];
                             }
                         });
 
@@ -273,7 +282,8 @@ class Settings
                         elements.forEach((el) => {
                             if (el.checked)
                             {
-                                selectedValue = options[option][el.value];
+                                selectedValue =
+                                options[option][el.value.replaceAll("_", " ")];
                             }
                         });
 
@@ -296,6 +306,16 @@ class Settings
                 }
             }
 
+            console.log(`==${settings.moduleName}==`);
+            for (let setting in settings)
+            {
+                console.log(
+                    `${setting}` +
+                    " : " +
+                    `${settings[setting]}`
+                );
+            }
+
             let storeObj = {};
 
             storeObj[options.moduleName] = { ...settings };
@@ -314,4 +334,3 @@ document.getElementById("settings_form").addEventListener(
     "submit",
     Settings.writeSettingsFromPage
 );
-
