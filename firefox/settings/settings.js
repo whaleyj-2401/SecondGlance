@@ -336,3 +336,4 @@ document.getElementById("settings_form").addEventListener(
     "submit",
     Settings.writeSettingsFromPage
 );
+
