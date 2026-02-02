@@ -10,6 +10,35 @@ This class consists of static functions
 */
 class Settings
 {
+    static getOptionsOf(moduleId)
+    {
+        let fact = new ModuleFactory();
+        let options;
+
+        if (typeof moduleId === "number")
+        {
+            options = fact.getModuleOptions(
+                fact.getModuleNo(moduleName)
+            );
+        }
+        else if (typeof moduleId === "string")
+        {
+            options = fact.getModuleOptions(moduleId);
+        }
+        else
+        {
+            throw new Error(`Settings.getOptionsOf: Invalid type,
+                             must be string or number`)
+        }
+
+        for (let option in options)
+        {
+            console.log(option);
+        }
+
+        return options;
+    }
+
     static readStoredSettings(moduleName)
     {
         browser.storage.local.get(moduleName).then(
@@ -35,29 +64,37 @@ class Settings
 
     static populateSettingsPage(settings)
     {
+        // Make sure the settings object isn't a value in another object
         for (let setting in settings)
         {
             settings = settings[setting];
         }
 
+        // Add header for module section
         document.getElementById("settings_form").innerHTML +=
         `<h2>${settings.moduleName}</h2>
         `;
 
+        // Get options object
         let fact = new ModuleFactory();
         let options = fact.getModuleOptions(
             fact.getModuleNo(settings.moduleName)
         );
 
+        // Iterate through options to assign settings
         for (let option in options)
         {
+            // Module name is immutable
             if (option === "moduleName")
             { continue; }
 
+            // Header states the option
             let header = "<p>" + option + "</p>";
 
-            let type = options[option].type;
+            // Type is stored in a variable for ease of access
+            let type = options[option]["type"];
 
+            //
             let id = settings.moduleName + "_" + option + "_" + type;
 
             switch (type)
@@ -86,6 +123,7 @@ class Settings
 
                     settings[option].forEach((value) => {
                         document.getElementById(`${id}`).innerHTML += value;
+                        document.getElementById(`${id}`).innerHTML += "\n";
                     })
 
                     break;
@@ -136,7 +174,7 @@ class Settings
                                 id="${id + opt}"
                                 name="${option + "_" + settings.moduleName}"
                                 value=${opt}
-                                ${options[option][opt] === settings[option] ?
+                                ${settings[option].includes(options[option][opt]) ?
                                     "checked" : ""}>
                         <label for="${id}">${opt}</label><br>
                         `;
@@ -152,6 +190,128 @@ class Settings
             }
         }
     }
+
+    static writeSettingsFromPage(ev)
+    {
+        ev.preventDefault();
+
+        let fact = new ModuleFactory();
+
+        for (let i = 0; i < fact.getMaxModules(); i++)
+        {
+            let module = fact.createModule(i);
+            let options = module.getOptions();
+
+            let settings = {};
+            settings["moduleName"] = options["moduleName"];
+
+            for (let option in options)
+            {
+                // Type is stored in a variable for ease of access
+                let type = options[option].type;
+
+                let elements = null;
+
+                let selectedValue = null;
+
+                //
+                let id = options.moduleName + "_" + option + "_" + type;
+
+                switch (options[option]["type"])
+                {
+                    case "text":
+
+                            settings[option] =
+                            document.getElementById(`${id}`).value;
+
+                        break;
+
+                    case "text_list":
+
+                        let optStr = document.getElementById(`${id}`).value;
+                        let urlArray = optStr.split("\n");
+                        let cpyFunc = (el) => { return el };
+
+                        settings[option] = urlArray.map(cpyFunc);
+
+                        break;
+
+                    case "select_exclusive":
+
+                        elements = document.getElementsByName(
+                            option + "_" + options.moduleName
+                        );
+
+                        elements.forEach((el) => {
+                            if (el.checked)
+                            {
+                                selectedValue = options[option][el.value];
+                            }
+                        });
+
+                        if (selectedValue === null)
+                        {
+                            throw new Error(
+                                `In stored settings: ` +
+                                `${option} ` +
+                                `was not defined.`
+                            );
+                        }
+
+                        settings[option] = selectedValue;
+
+                        break;
+
+                    case "select_inclusive":
+
+                        settings[option] = [];
+
+                        elements = document.getElementsByName(
+                            option + "_" + options.moduleName
+                        );
+
+                        elements.forEach((el) => {
+                            if (el.checked)
+                            {
+                                selectedValue = options[option][el.value];
+                            }
+                        });
+
+                        if (selectedValue === null)
+                        {
+                            throw new Error(
+                                `In stored settings: ` +
+                                `${option} ` +
+                                `was not defined.`
+                            );
+                        }
+
+                        settings[option].push(selectedValue);
+
+                        break;
+
+                    default:
+
+                        break;
+                }
+            }
+
+            let storeObj = {};
+
+            storeObj[options.moduleName] = { ...settings };
+
+            browser.storage.local.set(storeObj);
+        }
+    }
 }
 
-document.addEventListener("DOMContentLoaded", Settings.loadSettingsPage)
+document.addEventListener(
+    "DOMContentLoaded",
+    Settings.loadSettingsPage
+);
+
+document.getElementById("settings_form").addEventListener(
+    "submit",
+    Settings.writeSettingsFromPage
+);
+
