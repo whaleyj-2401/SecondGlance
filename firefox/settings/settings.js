@@ -3,11 +3,11 @@
 // Code by James Whaley
 
 /*
- = =*========
- Settings
+ ==========
+  Settings
  ==========
  This class consists of static functions
- */
+*/
 class Settings
 {
     static getOptionsOf(moduleId)
