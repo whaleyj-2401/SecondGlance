@@ -7,12 +7,22 @@
  */
 class TextScanner extends Module
 {
-    scanPage()
+    constructor()
     {
-        // TODO: Implement this function.
+        super();
+
+        this.options = {
+
+            moduleName : "Text Scanner",
+
+            delimiter : {
+                "type" : "text",
+                "default" : "."
+            }
+        }
     }
 
-    setSettings(settings)
+    scanPage()
     {
         // TODO: Implement this function.
     }

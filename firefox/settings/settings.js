@@ -3,11 +3,11 @@
 // Code by James Whaley
 
 /*
-==========
+ = =*========
  Settings
-==========
-This class consists of static functions
-*/
+ ==========
+ This class consists of static functions
+ */
 class Settings
 {
     static getOptionsOf(moduleId)
@@ -97,6 +97,8 @@ class Settings
             //
             let id = settings.moduleName + "_" + option + "_" + type;
 
+            id = id.replaceAll(" ", "_");
+
             switch (type)
             {
                 case "text":
@@ -107,8 +109,9 @@ class Settings
                      <input type="text"
                             id="${id}"
                             name="${option + "_" + settings.moduleName}"
-                            value="${settings[option] ? settings[option] : ""}">
-                            <br>
+                            value="${settings[option] ?
+                                settings[option] : ""}">
+                     <br>
                     `;
 
                     break;
@@ -144,12 +147,14 @@ class Settings
                         document.getElementById("settings_form").innerHTML +=
 
                         `<input type="radio"
-                                id="${id + opt}"
+                                id="${id + opt.replaceAll(" ", "_")}"
                                 name="${option + "_" + settings.moduleName}"
-                                value=${opt}
+                                value=${opt.replaceAll(" ", "_")}
                                 ${options[option][opt] === settings[option] ?
                                     "checked" : ""}>
-                            <label for="${id}">${opt}</label><br>
+                         <label for="${id + opt.replaceAll(" ", "_")}">
+                             ${opt}
+                         </label><br>
                         `;
                     }
 
@@ -171,12 +176,15 @@ class Settings
                         document.getElementById("settings_form").innerHTML +=
 
                         `<input type="checkbox"
-                                id="${id + opt}"
+                                id="${id + opt.replaceAll(" ", "_")}"
                                 name="${option + "_" + settings.moduleName}"
-                                value=${opt}
-                                ${settings[option].includes(options[option][opt]) ?
+                                value=${opt.replaceAll(" ", "_")}
+                                ${settings[option].includes(
+                                    options[option][opt]) ?
                                     "checked" : ""}>
-                        <label for="${id}">${opt}</label><br>
+                         <label for="${id + opt.replaceAll(" ", "_")}">
+                             ${opt}
+                         </label><br>
                         `;
                     }
 
@@ -184,7 +192,7 @@ class Settings
 
                 default:
                     throw new Error(`Settings: Undefined type for module ${settings.moduleName}:
-                                     ${type}`);
+                    ${type}`);
 
                     break;
             }
@@ -217,12 +225,14 @@ class Settings
                 //
                 let id = options.moduleName + "_" + option + "_" + type;
 
+                id = id.replaceAll(" ", "_");
+
                 switch (options[option]["type"])
                 {
                     case "text":
 
-                            settings[option] =
-                            document.getElementById(`${id}`).value;
+                        settings[option] =
+                        document.getElementById(`${id}`).value;
 
                         break;
 
@@ -245,7 +255,8 @@ class Settings
                         elements.forEach((el) => {
                             if (el.checked)
                             {
-                                selectedValue = options[option][el.value];
+                                selectedValue =
+                                options[option][el.value.replaceAll("_", " ")];
                             }
                         });
 
@@ -273,7 +284,8 @@ class Settings
                         elements.forEach((el) => {
                             if (el.checked)
                             {
-                                selectedValue = options[option][el.value];
+                                selectedValue =
+                                options[option][el.value.replaceAll("_", " ")];
                             }
                         });
 
@@ -294,6 +306,16 @@ class Settings
 
                         break;
                 }
+            }
+
+            console.log(`==${settings.moduleName}==`);
+            for (let setting in settings)
+            {
+                console.log(
+                    `${setting}` +
+                    " : " +
+                    `${settings[setting]}`
+                );
             }
 
             let storeObj = {};
