@@ -5,19 +5,6 @@
  */
 class AdBlocker extends Module
 {
-    /*
-    setSettings(settings) 
-    {   
-        // If the settings object is not valid, log an error and return.
-        if (this.settingsIsValid(settings)) {
-            console.error("Invalid settings object passed to AdBlocker.setSettings().\n");
-            return;
-        }
-
-        this.settings = settings;
-    }
-    */
-
     constructor()
     {
         super();
@@ -56,23 +43,42 @@ class AdBlocker extends Module
             return;
         }
 
-        // TODO: Implement whitelisting logic here
+        // TODO: Implement URL whitelisting logic here
 
-        // Define a list of common ad related selectors
-        const ads = [
-            "iframe[src*='ads']", // Matches iframes with 'ads' in the src attribute
-            "div[class*='ad']", // Matches divs with 'ad' in the class attribute
-            "img[src*='ad']", // Matches images with 'ad' in the src attribute
-            "section[class*='sponsor']" // Matches sections with 'sponsor' in the class attribute (Sponsored content)
-            // TODO : Possibly expand list with more ad selectors
-        ];
+        const blockEverything = this.settings.blockAll;
+        // Popup ads
+        if (blockEverything || this.settings.blockPopups) {
+            const popupSelectors = [
+                "iframe[src*='popup']",
+                "div[class*='popup']",
+                "img[src*='popup']",
+                "div[class*='modal']"
+            ]
 
-        // Iterate through each selector and hide matching elements
-        ads.forEach((selector) => {
-            const elements = document.querySelectorAll(selector);
-            elements.forEach((element) => {
-                element.style.display = 'none';
+            popupSelectors.forEach((selector) => {
+                document.querySelectorAll(selector).forEach(element => {
+                    element.style.display = 'none';
             });
         });
+
         }
+
+        //Banner ads
+        if (blockEverything || this.settings.blockBanners) {
+            const bannerSelectors = [
+                // Define a list of common ad related selectors
+                "iframe[src*='ads']", // Matches iframes with 'ads' in the src attribute
+                "div[class*='ad']", // Matches divs with 'ad' in the class attribute
+                "img[src*='ad']", // Matches images with 'ad' in the src attribute
+                "section[class*='sponsor']" // Matches sections with 'sponsor' in the class attribute (Sponsored content)
+            ];
+            
+            // Iterate through each selector and hide matching elements
+            bannerSelectors.forEach((selector) => {
+                document.querySelectorAll(selector).forEach(element => {
+                    element.style.display = 'none';
+                });
+            });
+        }
+    }
 }
