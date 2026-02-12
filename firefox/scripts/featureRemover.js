@@ -21,9 +21,25 @@ class FeatureRemover extends Module {
      ===================== */
 
   async enable() {
-    // TODO: Check settings to determine if base feature removal is enabled
+    const stored = await browser.storage.local.get(this.id);
 
-    // }
+    const settings = stored[this.id];
+
+    if (!settings) return;
+
+    // Base mode
+    if (settings.baseEnabled) {
+      await this.enableBaseMode();
+    } else {
+      this.disableBaseMode();
+    }
+
+    // Aggressive mode
+    if (settings.aggressiveEnabled) {
+      await this.enableAggressiveMode();
+    } else {
+      this.disableAggressiveMode();
+    }
   }
 
   disable() {
@@ -47,7 +63,6 @@ class FeatureRemover extends Module {
   }
 
   async enableAggressiveMode() {
-    // TODO: Only call this if user explicitly enables aggressive mode
     await this.#injectFromFile(
       this.aggressiveCssPath,
       this.STYLE_IDS.aggressive
@@ -76,7 +91,7 @@ class FeatureRemover extends Module {
 
       document.documentElement.appendChild(style);
     } catch (e) {
-      
+      console.error("FeatureRemover CSS injection failed:", e);
     }
   }
 
