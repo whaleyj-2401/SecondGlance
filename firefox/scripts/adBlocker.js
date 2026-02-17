@@ -92,4 +92,5 @@ class AdBlocker extends Module
 
         element.style.outline = "4px solid red";
         element.style.backgroundcolor = "rgba(255, 0, 0, 0.2)";
+    }
 }
