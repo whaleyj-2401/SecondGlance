@@ -57,7 +57,7 @@ class AdBlocker extends Module
 
             popupSelectors.forEach((selector) => {
                 document.querySelectorAll(selector).forEach(element => {
-                    element.style.display = 'none';
+                    this.hideElement(element);
             });
         });
 
@@ -76,9 +76,20 @@ class AdBlocker extends Module
             // Iterate through each selector and hide matching elements
             bannerSelectors.forEach((selector) => {
                 document.querySelectorAll(selector).forEach(element => {
-                    element.style.display = 'none';
+                    this.hideElement(element);
                 });
             });
         }
     }
+
+    hideElement(element)
+    {
+        // element.style.display = "none";
+
+        if (element.dataset.secindGlanceBlocked) return;
+
+        element.dataset.secindGlanceBlocked = "true";
+
+        element.style.outline = "4px solid red";
+        element.style.backgroundcolor = "rgba(255, 0, 0, 0.2)";
 }
