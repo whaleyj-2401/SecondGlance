@@ -68,31 +68,32 @@ class FeatureRemover extends Module {
         this.aggressiveCss =
 
         `
-        /* Targets generic naming patterns */
+        /* Explicit chat / assistant naming */
         [class*="chat" i],
         [id*="chat" i],
         [class*="assistant" i],
         [id*="assistant" i],
-        [class*="support" i],
-        [id*="support" i],
-        [class*="widget" i],
-        [id*="widget" i] {
-            display: none !important;
-        }
+        [class*="helpdesk" i],
+        [id*="helpdesk" i] {
+        display: none !important;
+}
 
-        /* Targets floating action buttons */
+        /* Common launcher buttons */
         button[aria-label*="chat" i],
         button[aria-label*="help" i],
-        button[aria-label*="support" i] {
-            display: none !important;
-        }
+        button[aria-label*="support" i],
+        button[class*="chat" i],
+        button[id*="chat" i] {
+        display: none !important;
+}
 
-        /* Targets fixed bottom-right overlays */
-        div[style*="position: fixed"][style*="bottom"][style*="right"] {
-            display: none !important;
-        }
+        /* Known chat iframes (fallback) */
+        iframe[src*="chat"],
+        iframe[src*="support"] {
+        display: none !important;
+}
         `;
-
+        
         this.options = {
             moduleName : "Feature Remover",
 
