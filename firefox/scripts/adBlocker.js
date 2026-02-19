@@ -38,6 +38,8 @@ class AdBlocker extends Module
 
     scanPage()
     {
+        console.log("AdBlocker scanPage running...");
+
         // Make sure settings are enabled and valid
         if (!this.settings || !this.settings.enabled) {
             return;
@@ -50,9 +52,15 @@ class AdBlocker extends Module
         if (blockEverything || this.settings.blockPopups) {
             const popupSelectors = [
                 "iframe[src*='popup']",
-                "div[class*='popup']",
                 "img[src*='popup']",
-                "div[class*='modal']"
+                "div[class*='popup']",
+                "div[class*='modal']",
+                "div[class*='overlay']",
+                "div[class*='dialog']",
+                "div[role='dialog']",
+                "[aria-modal='true']",
+                "div[class*='subscribe']",
+                "div[class*='newsletter']"
             ]
 
             popupSelectors.forEach((selector) => {
@@ -67,10 +75,24 @@ class AdBlocker extends Module
         if (blockEverything || this.settings.blockBanners) {
             const bannerSelectors = [
                 // Define a list of common ad related selectors
-                "iframe[src*='ads']", // Matches iframes with 'ads' in the src attribute
-                "div[class*='ad']", // Matches divs with 'ad' in the class attribute
-                "img[src*='ad']", // Matches images with 'ad' in the src attribute
-                "section[class*='sponsor']" // Matches sections with 'sponsor' in the class attribute (Sponsored content)
+                "iframe[src*='ads']",
+                "iframe[src*='doubleclick']",
+                "iframe[src*='googlesyndication']",
+
+                "div[id*='ad']",
+                "div[class*='ad-']",
+                "div[class*='ads']",
+                "div[class*='advert']",
+
+                "img[src*='ad']",
+                "img[src*='ads']",
+                "img[src*='doubleclick']",
+
+                "[data-ad]",
+                "[aria-label*='ad']",
+
+                "section[class*='sponsor']",
+                "div[class*='sponsor']"
             ];
             
             // Iterate through each selector and hide matching elements
@@ -84,13 +106,16 @@ class AdBlocker extends Module
 
     hideElement(element)
     {
-        // element.style.display = "none";
+        element.style.display = "none";
+        // element.remove();
+        
+        /*
+        if (element.dataset.secondGlanceBlocked) return;
 
-        if (element.dataset.secindGlanceBlocked) return;
-
-        element.dataset.secindGlanceBlocked = "true";
+        element.dataset.secondGlanceBlocked = "true";
 
         element.style.outline = "4px solid red";
         element.style.backgroundcolor = "rgba(255, 0, 0, 0.2)";
+        */
     }
 }
