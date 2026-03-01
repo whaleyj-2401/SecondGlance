@@ -104,7 +104,7 @@ class AdBlocker extends Module
                 });
             });
         }
-
+        /*
         document.querySelectorAll("div, iframe, section, img, article").forEach(element => {
             const text = element.innertext?.toLowerCase();
             if (text && (text.includes("sponsored") ||
@@ -112,7 +112,8 @@ class AdBlocker extends Module
                 text.includes("ad"))) {
                 this.hideElement(element);
             }
-        )
+        });
+        */
     }
 
     hideElement(element)
