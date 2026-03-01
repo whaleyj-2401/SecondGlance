@@ -79,8 +79,10 @@ class AdBlocker extends Module
                 "iframe[src*='doubleclick']",
                 "iframe[src*='googlesyndication']",
 
-                "div[id*='ad']",
-                "div[class*='ad-']",
+                "div[id*='-ad-']",
+                "div[id*='_ad_']",
+                "div[class*='-ad-']",
+                "div[class*='_ad_']",
                 "div[class*='ads']",
                 "div[class*='advert']",
 
@@ -102,20 +104,28 @@ class AdBlocker extends Module
                 });
             });
         }
+
+        document.querySelectorAll("div, iframe, section, img, article").forEach(element => {
+            const text = element.innertext?.toLowerCase();
+            if (text && (text.includes("sponsored") ||
+                text.includes("advertisement") || 
+                text.includes("ad"))) {
+                this.hideElement(element);
+            }
+        )
     }
 
     hideElement(element)
     {
-        element.style.display = "none";
+        // element.style.display = "none";
         // element.remove();
         
-        /*
         if (element.dataset.secondGlanceBlocked) return;
 
         element.dataset.secondGlanceBlocked = "true";
 
         element.style.outline = "4px solid red";
-        element.style.backgroundcolor = "rgba(255, 0, 0, 0.2)";
-        */
+        element.style.backgroundColor= "rgba(255, 0, 0, 0.2)";
+    
     }
 }
