@@ -5,62 +5,55 @@ body {
 }
 
 h1 {
-    text-align: left;
-    color: #0f0909;
-    font-size: 25px;
+    text-align: center;
 }
 
 #settings_form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+
+}
+
+.module-card {
     background-color: #71737b;
     padding: 20px;
-    border-radius: 5px;
-}
-
-h2 {
-    color: #333;
-    margin-top: 20px;
-    margin-bottom: 0px;
-    border-bottom: 2px solid #4b4c51;
-}
-
-p {
-    font-weight: bold;
-    margin-top: 15px;
-    margin-bottom: 5px;
-}
-
-input[type="text"],
-textarea {
-    width: 100%;
-    padding: 8px;
-    display: block;
-    margin-bottom: 5px;
-    margin-top: 5px;
-    border-radius: 5%;
+    border-radius: 8px;
     border: 1px solid #4b4c51;
-    font-size: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-textarea {
-    min-height: 80px;
+.module-card h2 {
+    margin-top: 0;
+    border-bottom: 2px solid #4b4c51;
+    padding-bottom: 5px;
+    font-size: 20px;
+}
+
+.module-card p {
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 5px;
 }
 
 input[type="checkbox"],
 input[type="radio"] {
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 label {
-    margin-right: 15px;
     font-size: 15px;
 }
 
+input[type="text"],
+textarea {
+    /*width: 100%;*/
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #4b4c51;
+}
+
 input[type="submit"] {
-    display: block;
-    border: none;
-    background-color: #3f3d42;
-    color: white;
-    text-align: right;
-    font-size: 15px;
-    cursor: pointer;
+    margin-top: 20px;
+    padding: 10px 15px;
 }

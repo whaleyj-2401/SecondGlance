@@ -81,9 +81,14 @@ class Settings
         }
 
         // Add header for module section
-        document.getElementById("settings_form").innerHTML +=
+        /*document.getElementById("settings_form").innerHTML +=
         `<h2>${settings.moduleName}</h2>
-        `;
+        `;*/
+        let form = document.getElementById("settings_form");
+        let card = document.createElement("div");
+        card.className = "module-card";
+        card.innerHTML = `<h2>${settings.moduleName}</h2>`;
+        form.appendChild(card);
 
         // Get options object
         let fact = new ModuleFactory();
@@ -116,7 +121,7 @@ class Settings
                 // Adds a text input
                 case "text":
 
-                    document.getElementById("settings_form").innerHTML +=
+                    card.innerHTML +=
 
                     `<label for="${id}">${option}: </label>
                      <input type="text"
@@ -132,7 +137,7 @@ class Settings
                 // Adds a multiline text field, options are newline-delimited
                 case "text_list":
 
-                    document.getElementById("settings_form").innerHTML +=
+                    card.innerHTML +=
 
                     `<label for="${id}">${option}: </label><br>
                      <textarea id="${id}"></textarea>
@@ -148,7 +153,7 @@ class Settings
                 // Adds radio buttons for the options
                 case "select_exclusive":
 
-                    document.getElementById("settings_form").innerHTML +=
+                    card.innerHTML +=
                     `<p>${header}</p>
                     `;
 
@@ -159,7 +164,7 @@ class Settings
                             opt === "moduleName")
                         { continue; }
 
-                        document.getElementById("settings_form").innerHTML +=
+                        card.innerHTML +=
 
                         `<input type="radio"
                                 id="${id + opt.replaceAll(" ", "_")}"
@@ -178,7 +183,7 @@ class Settings
                 // Adds check boxes for the options
                 case "select_inclusive":
 
-                    document.getElementById("settings_form").innerHTML +=
+                    card.innerHTML +=
                     `<p>${header}</p>
                     `;
 
@@ -189,7 +194,7 @@ class Settings
                             opt === "moduleName")
                         { continue; }
 
-                        document.getElementById("settings_form").innerHTML +=
+                        card.innerHTML +=
 
                         `<input type="checkbox"
                                 id="${id + opt.replaceAll(" ", "_")}"
