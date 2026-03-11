@@ -102,8 +102,8 @@ class FeatureRemover extends Module
             aggressiveEnabled : {
               "type" : "select_exclusive",
               "default" : true,
-              "Aggressive Mode" : true,
-              "Base Mode" : false
+              "Aggressive Filtering" : true,
+              "Standard Filtering" : false
             }
         };
     }

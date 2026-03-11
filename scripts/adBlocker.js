@@ -16,22 +16,22 @@ class AdBlocker extends Module
             blockAll : {
                 "type" : "select_exclusive",
                 "default" : true,
-                "Block All" : true,
-                "Don't Block All" : false
+                "Enable Blocking" : true,
+                "Disable Blocking" : false
             },
 
             blockPopups : {
                 "type" : "select_exclusive",
                 "default" : true,
                 "Block Popups" : true,
-                "Don't Block Popups" : false
+                "Allow Popups" : false
             },
 
             blockBanners : {
                 "type" : "select_exclusive",
                 "default" : true,
-                "Block Banners" : true,
-                "Don't Block Banners" : false
+                "Block Banners Ads" : true,
+                "Allow Banners Ads" : false
             }
         }
     }

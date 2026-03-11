@@ -104,7 +104,7 @@ class Settings
             { continue; }
 
             // Header states the option
-            let header = "<p>" + option + "</p>";
+            let header = "<p>" + option.replace(/([A-Z])/g, " $1").replace(/^./, c=> c.toUpperCase()) + "</p>";
 
             // Type is stored in a variable for ease of access
             let type = options[option]["type"];
