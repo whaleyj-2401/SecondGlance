@@ -24,8 +24,6 @@ class ModuleFactory
     // Returns null if invalid number is given.
     createModule(moduleNo)
     {
-        // Switch decides the module to instantiate based on given number.
-        // TODO: Add logic for reading the settings
         switch(moduleNo)
         {
             case 0:

@@ -16,30 +16,28 @@ class AdBlocker extends Module
             blockAll : {
                 "type" : "select_exclusive",
                 "default" : true,
-                "Enable Blocking" : true,
-                "Disable Blocking" : false
+                "Block All" : true,
+                "Don't Block All" : false
             },
 
             blockPopups : {
                 "type" : "select_exclusive",
                 "default" : true,
                 "Block Popups" : true,
-                "Allow Popups" : false
+                "Don't Block Popups" : false
             },
 
             blockBanners : {
                 "type" : "select_exclusive",
                 "default" : true,
-                "Block Banners Ads" : true,
-                "Allow Banners Ads" : false
+                "Block Banners" : true,
+                "Don't Block Banners" : false
             }
         }
     }
 
     scanPage()
     {
-        console.log("AdBlocker scanPage running...");
-
         // Make sure settings are enabled and valid
         if (!this.settings || !this.settings.enabled) {
             return;

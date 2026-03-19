@@ -1273,6 +1273,12 @@ let optionsArr = {
         delimiter : {
             "type" : "text",
             "default" : "."
+        },
+
+        model : {
+            "type" : "select_exclusive",
+            "default" : -1,
+            "Test" : -1
         }
     }
 };

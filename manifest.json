@@ -36,7 +36,7 @@
     "content_scripts" : [
         {
             "matches" : ["*://*/*"],
-            "run_at": "document_start",
+            "run_at": "document_idle",
             "js" : [
                 "./polyfills/browser-polyfill.js",
                 "./scripts/textScanningModel.js",
@@ -46,7 +46,7 @@
                 "./scripts/textScanner.js",
                 "./scripts/moduleFactory.js",
                 "./scripts/main.js"
-                ]
+            ]
         }
     ]
 }

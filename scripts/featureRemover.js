@@ -8,7 +8,7 @@ class FeatureRemover extends Module
 {
     constructor()
     {
-        super("feature-remover");
+        super();
 
         this.STYLE_IDS = {
             base: "fr-hide-base",
@@ -102,8 +102,8 @@ class FeatureRemover extends Module
             aggressiveEnabled : {
               "type" : "select_exclusive",
               "default" : true,
-              "Aggressive Filtering" : true,
-              "Standard Filtering" : false
+              "Aggressive Mode" : true,
+              "Base Mode" : false
             }
         };
     }
@@ -128,8 +128,6 @@ class FeatureRemover extends Module
           this.disableBaseMode();
         }
         */
-
-        console.log("Hello from FeatureRemover");
 
         // Aggressive mode
         if (this.settings.aggressiveEnabled)
