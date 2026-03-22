@@ -38,8 +38,14 @@ class AdBlocker extends Module
 
     scanPage()
     {
+        if (this._running) return;
+        this._running = true;
+
+        console.log("AdBlocker scanPage running...");
+
         // Make sure settings are enabled and valid
         if (!this.settings || !this.settings.enabled) {
+            this._running = false;
             return;
         }
 
@@ -64,9 +70,8 @@ class AdBlocker extends Module
             popupSelectors.forEach((selector) => {
                 document.querySelectorAll(selector).forEach(element => {
                     this.hideElement(element);
+                });
             });
-        });
-
         }
 
         //Banner ads
@@ -78,9 +83,6 @@ class AdBlocker extends Module
                 "iframe[src*='googlesyndication']",
 
                 "div[id*='ad']",
-                //"div[id*='-ad-']",
-                //"div[id*='_ad_']",
-                //"div[class*='-ad-']",
                 "div[class*='ad-']",
                 "div[class*='_ad_']",
                 "div[class*='ads']",
@@ -104,29 +106,39 @@ class AdBlocker extends Module
                 });
             });
         }
-        /*
+
         document.querySelectorAll("div, iframe, section, img, article").forEach(element => {
-            const text = element.innertext?.toLowerCase();
+            const text = element.innerText?.toLowerCase();
             if (text && (text.includes("sponsored") ||
-                text.includes("advertisement") || 
-                text.includes("ad"))) {
+                text.includes("advertisement"))) {
                 this.hideElement(element);
             }
         });
-        */
+
+        if (!this._observer) {
+            this._observer = new MutationObserver(() => {
+                this.scanPage();
+            });
+
+            this._observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        }
+        this._running = false;
     }
 
     hideElement(element)
     {
-        // element.style.display = "none";
+        element.style.display = "none";
         // element.remove();
-        
+        /*
         if (element.dataset.secondGlanceBlocked) return;
 
         element.dataset.secondGlanceBlocked = "true";
 
         element.style.outline = "4px solid red";
         element.style.backgroundColor= "rgba(255, 0, 0, 0.2)";
-    
+        */
     }
 }
