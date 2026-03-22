@@ -78,23 +78,23 @@ class AdBlocker extends Module
         if (blockEverything || this.settings.blockBanners) {
             const bannerSelectors = [
                 // Define a list of common ad related selectors
+                // Might miss some ads, but should catch most
                 "iframe[src*='ads']",
                 "iframe[src*='doubleclick']",
                 "iframe[src*='googlesyndication']",
-
                 "div[id*='ad']",
                 "div[class*='ad-']",
                 "div[class*='_ad_']",
                 "div[class*='ads']",
                 "div[class*='advert']",
-
+                //"div[id*='-ad-']",
+                //"div[id*='_ad_']",
+                //"div[class*='-ad-']",
                 "img[src*='ad']",
                 "img[src*='ads']",
                 "img[src*='doubleclick']",
-
                 "[data-ad]",
                 "[aria-label*='ad']",
-
                 "section[class*='sponsor']",
                 "div[class*='sponsor']"
             ];
@@ -107,6 +107,7 @@ class AdBlocker extends Module
             });
         }
 
+        // text-based ad detection
         document.querySelectorAll("div, iframe, section, img, article").forEach(element => {
             const text = element.innerText?.toLowerCase();
             if (text && (text.includes("sponsored") ||
@@ -115,6 +116,7 @@ class AdBlocker extends Module
             }
         });
 
+        // Mutation Observer to detect dynamically loaded ads
         if (!this._observer) {
             this._observer = new MutationObserver(() => {
                 this.scanPage();
@@ -132,7 +134,8 @@ class AdBlocker extends Module
     {
         element.style.display = "none";
         // element.remove();
-        /*
+
+        /* Highlight ads for testing purposes
         if (element.dataset.secondGlanceBlocked) return;
 
         element.dataset.secondGlanceBlocked = "true";
