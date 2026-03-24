@@ -45,7 +45,7 @@ class AdBlocker extends Module
 
         // Make sure settings are enabled and valid
         if (!this.settings || !this.settings.enabled) {
-            this._running = false;
+            //this._running = false;
             return;
         }
 
@@ -82,19 +82,19 @@ class AdBlocker extends Module
                 "iframe[src*='ads']",
                 "iframe[src*='doubleclick']",
                 "iframe[src*='googlesyndication']",
-                "div[id*='ad']",
+                //"div[id*='ad']",
                 "div[class*='ad-']",
-                "div[class*='_ad_']",
+                //"div[class*='_ad_']",
                 "div[class*='ads']",
                 "div[class*='advert']",
                 //"div[id*='-ad-']",
                 //"div[id*='_ad_']",
                 //"div[class*='-ad-']",
-                "img[src*='ad']",
+                //"img[src*='ad']",
                 "img[src*='ads']",
                 "img[src*='doubleclick']",
                 "[data-ad]",
-                "[aria-label*='ad']",
+                //"[aria-label*='ad']",
                 "section[class*='sponsor']",
                 "div[class*='sponsor']"
             ];
@@ -106,7 +106,7 @@ class AdBlocker extends Module
                 });
             });
         }
-
+        /*
         // text-based ad detection
         document.querySelectorAll("div, iframe, section, img, article").forEach(element => {
             const text = element.innerText?.toLowerCase();
@@ -115,6 +115,7 @@ class AdBlocker extends Module
                 this.hideElement(element);
             }
         });
+        */
 
         // Mutation Observer to detect dynamically loaded ads
         if (!this._observer) {
@@ -135,7 +136,8 @@ class AdBlocker extends Module
         element.style.display = "none";
         // element.remove();
 
-        /* Highlight ads for testing purposes
+        // Highlight ads for testing purposes
+        /*
         if (element.dataset.secondGlanceBlocked) return;
 
         element.dataset.secondGlanceBlocked = "true";
