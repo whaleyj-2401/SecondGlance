@@ -23,8 +23,8 @@ class TextScanner extends Module
 
             model : {
                 "type" : "select_exclusive",
-                "default" : 0,
-                "Test" : 0
+                "default" : -1,
+                "Test" : -1
             }
         }
     }
