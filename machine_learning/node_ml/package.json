@@ -1,0 +1,30 @@
+{
+  "name": "node_ml",
+  "version": "1.0.0",
+  "description": "For machine learning for SecondGlance",
+  "type": "module",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "J. Whaley",
+  "license": "ISC",
+  "dependencies": {
+    "@tensorflow/tfjs": "^4.22.0",
+    "@tensorflow/tfjs-node": "^4.22.0",
+    "babel-runtime": "^6.26.0",
+    "brain.js": "^1.2.2",
+    "csv-parse": "^6.2.1",
+    "fs": "^0.0.1-security",
+    "natural": "^8.1.1",
+    "pandas-js": "^0.2.4",
+    "path": "^0.12.7",
+    "scikitjs": "^1.24.0",
+    "util": "^0.12.5",
+    "wink-eng-lite-web-model": "^1.8.1",
+    "wink-nlp": "^2.4.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.27.4"
+  }
+}
