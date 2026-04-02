@@ -3,6 +3,89 @@
 // creating a dynamic settings page.
 // Code by James Whaley
 
+let optionsArr = {
+
+    "Ad Blocker" : {
+        moduleName : "Ad Blocker",
+
+        blockAll : {
+            "type" : "select_exclusive",
+            "default" : true,
+            "Block All" : true,
+            "Don't Block All" : false
+        },
+
+        blockPopups : {
+            "type" : "select_exclusive",
+            "default" : true,
+            "Block Popups" : true,
+            "Don't Block Popups" : false
+        },
+
+        blockBanners : {
+            "type" : "select_exclusive",
+            "default" : true,
+            "Block Banners" : true,
+            "Don't Block Banners" : false
+        }
+    },
+
+    "Feature Remover" : {
+        moduleName : "Feature Remover",
+
+        aggressiveEnabled : {
+            "type" : "select_exclusive",
+            "default" : true,
+            "Aggressive Mode" : true,
+            "Base Mode" : false
+        }
+    },
+
+    "Text Scanner" : {
+        moduleName : "Text Scanner",
+
+        delimiter : {
+            "type" : "text",
+            "default" : "."
+        },
+
+        model : {
+            "type" : "select_exclusive",
+            "default" : -1,
+            "Test" : -1
+        }
+    }
+};
+
+let generalOptions = {
+
+    enabled : {
+        "type" : "select_exclusive",
+        "default" : true,
+        "Enabled" : true,
+        "Disabled" : false
+    },
+
+    urlListEnabled : {
+        "type" : "select_exclusive",
+        "default" : true,
+        "Enabled" : true,
+        "Disabled" : false
+    },
+
+    urlList : {
+        "type" : "text_list",
+        "default" : [],
+    },
+
+    isWhitelist : {
+        "type" : "select_exclusive",
+        "default" : true,
+        "Whitelist" : true,
+        "Blacklist" : false
+    },
+};
+
 /*
  ==========
   Settings
@@ -16,6 +99,7 @@ class Settings
         throw new Error("Settings class is abstract.");
     }
 
+    /*
     static getOptionsOf(moduleId)
     {
         let fact = new ModuleFactory();
@@ -44,6 +128,7 @@ class Settings
 
         return options;
     }
+    */
 
     static readStoredSettings(moduleName)
     {
@@ -58,12 +143,10 @@ class Settings
 
     static loadSettingsPage()
     {
-        let fact = new ModuleFactory();
-
-        for (let i = 0; i < fact.getMaxModules(); i++)
+        for (let options in optionsArr)
         {
             Settings.readStoredSettings(
-                fact.getModuleName(i)
+                options
             );
         }
     }
@@ -91,10 +174,7 @@ class Settings
         form.appendChild(card);
 
         // Get options object
-        let fact = new ModuleFactory();
-        let options = fact.getModuleOptions(
-            fact.getModuleNo(settings.moduleName)
-        );
+        let options = { ...generalOptions, ...optionsArr[settings.moduleName] };
 
         // Iterate through options to assign settings
         for (let option in options)
@@ -224,14 +304,9 @@ class Settings
     {
         ev.preventDefault();
 
-        // Facory for getting options
-        let fact = new ModuleFactory();
-
-        // Iterate through all possible modules
-        for (let i = 0; i < fact.getMaxModules(); i++)
+        for (let moduleName in optionsArr)
         {
-            let module = fact.createModule(i);
-            let options = module.getOptions();
+            let options = { ...generalOptions, ...optionsArr[moduleName] };
 
             let settings = {};
             settings["moduleName"] = options["moduleName"];
