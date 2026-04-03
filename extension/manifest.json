@@ -21,7 +21,6 @@
     ],
 
     "background" : {
-        "type" : "module",
         "scripts" : [
             "./polyfills/browser-polyfill.js",
             "./scripts/init.js"
@@ -30,24 +29,24 @@
     },
 
     "options_ui" : {
-        "page" : "settings/settings_page.html"
+        "page" : "./settings/settings_page.html"
     },
 
     "content_scripts" : [
         {
             "matches" : ["*://*/*"],
             "run_at": "document_idle",
-            "type" : "module",
             "js" : [
                 "./polyfills/browser-polyfill.js",
-                "./scripts/textScanningModel.js",
-                "./scripts/module.js",
-                "./scripts/adBlocker.js",
-                "./scripts/featureRemover.js",
-                "./scripts/textScanner.js",
-                "./scripts/moduleFactory.js",
-                "./scripts/main.js"
+                "./scripts/contentScriptBundle.js"
             ]
+        }
+    ],
+
+    "web_accessible_resources" : [
+        {
+            "resources" : ["ml_serialized/naiveBayesNatural.json"],
+            "matches" : ["*://*/*"]
         }
     ]
 }
