@@ -3,6 +3,9 @@ import {TextScanningModel} from "./textScanningModel.js";
 import {TestTSM} from "./textScanningModel.js";
 import {TextScanningModelFactory} from "./textScanningModel.js";
 
+import BayesClassifier from "natural/lib/natural/classifiers/bayes_classifier.js";
+import PorterStemmer from "natural/lib/natural/stemmers/porter_stemmer.js";
+
 /* =============
  *  TextScanner
  * =============
@@ -32,21 +35,20 @@ export class TextScanner extends Module
 
     async scanPage()
     {
-        //if (!this.canRunHere())
-        //    return;
+        console.log("Textscanner Scanpage running.");
 
         let modelFact = new TextScanningModelFactory();
-        let model = modelFact.createModel(this.settings["model"]);
+        let model = await modelFact.createModel(this.settings["model"]);
 
         let textElementTags = [
-            "SPAN",
+            //"SPAN",
             "P",
-            "H1",
-            "H2",
-            "H3",
-            "H4",
-            "H5",
-            "H6"
+            //"H1",
+            //"H2",
+            //"H3",
+            //"H4",
+            //"H5",
+            //"H6"
         ];
 
         let bodyElements = [];
@@ -64,22 +66,27 @@ export class TextScanner extends Module
             {
                 let innerText = bodyElements[i][j].innerText;
 
-                console.log(innerText, " : ", model.scanText);
-
-                if (model.scanText(innerText) === 1)
+                if (innerText.length > 50)
                 {
-                    bodyElements[i][j].style.backgroundColor = "black";
-                    bodyElements[i][j].style.color = "white";
+                    let result = model.scanText(innerText);
+
+                    /*
+                    console.log(innerText,
+                                "\nLength: ",
+                                innerText.length,
+                                "\nValue: ",
+                                result,
+                                "\nResult type: ",
+                                typeof(result));
+                    */
+
+                    if (result === 1)
+                    {
+                        bodyElements[i][j].style.backgroundColor = "black";
+                        bodyElements[i][j].style.color = "white";
+                    }
                 }
             }
         }
-    }
-
-    canRunHere()
-    {
-        if (!this.settings.enabled)
-            return false;
-
-
     }
 }

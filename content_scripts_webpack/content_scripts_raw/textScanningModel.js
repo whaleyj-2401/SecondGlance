@@ -1,5 +1,5 @@
 import BayesClassifier from "natural/lib/natural/classifiers/bayes_classifier.js";
-import LancasterStemmer from "natural/lib/natural/stemmers/lancaster_stemmer.js";
+import PorterStemmer from "natural/lib/natural/stemmers/porter_stemmer.js";
 
 /* ===================
  *  TextScanningModel
@@ -57,41 +57,23 @@ export class TestTSM extends TextScanningModel
  */
 export class NaiveBayesTSM extends TextScanningModel
 {
-    constructor()
+    constructor(model)
     {
         super();
 
-        let serialUrl = browser.runtime.getURL(
-            "ml_serialized/naiveBayesNatural.json"
-        );
+        this.model = model;
 
-        let modelSerial;
-
-        // TODO: Wake up from the async/sync nightmare.
-
-        fetch(serialUrl).then((response) => {
-
-            console.log("Reached fetch then.");
-            console.log(response);
-
-            return response.json()
-        }).then((jsonData) => {
-
-            console.log("Reached json then.");
-            console.log(jsonData);
-
-            modelSerial = jsonData;
-        });
-
-        console.log(modelSerial);
-
-        this.model = BayesClassifier.restore(modelSerial);
-
-        console.log("Model deserialized.");
     }
 
     scanText(text)
-    { return model.classify(text); }
+    {
+        let result = this.model.classify(text);
+
+        if (result === "0")
+            return 0;
+        else if (result === "1")
+            return 1;
+    }
 }
 
 /* ==========================
@@ -106,7 +88,7 @@ export class TextScanningModelFactory
         this.maxModels = 2;
     }
 
-    createModel(modelNo)
+    async createModel(modelNo)
     {
         switch(modelNo)
         {
@@ -114,7 +96,28 @@ export class TextScanningModelFactory
                 return new TestTSM();
                 break;
             case 0:
-                return new NaiveBayesTSM();
+
+                let serialUrl = browser.runtime.getURL(
+                    "ml_serialized/naiveBayesNatural.json"
+                );
+
+                let file = await fetch(serialUrl);
+
+                let modelSerial = await file.json();
+
+                let model = new BayesClassifier(PorterStemmer);
+
+                model.docs = modelSerial.docs;
+                model.features = modelSerial.features;
+                model.lastAdded = modelSerial.lastAdded;
+
+                model.classifier.classFeatures = modelSerial.classifier.classFeatures;
+                model.classifier.classTotals = modelSerial.classifier.classTotals;
+                model.classifier.smoothing = modelSerial.classifier.smoothing;
+                model.classifier.totalExamples = modelSerial.classifier.totalExamples;
+
+                return new NaiveBayesTSM(model);
+
                 break;
             default:
                 return null;

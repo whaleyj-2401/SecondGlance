@@ -43,6 +43,8 @@ export class AdBlocker extends Module
         if (this._running) return;
         this._running = true;
 
+        console.log("Adblocker Scanpage running.");
+
         // Make sure settings are enabled and valid
         if (!this.settings || !this.settings.enabled) {
             //this._running = false;

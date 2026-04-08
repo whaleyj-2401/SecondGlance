@@ -116,6 +116,8 @@ export class FeatureRemover extends Module
 
     async scanPage()
     {
+        console.log("Featureremover Scanpage running.");
+
         /*
         const stored = await browser.storage.local.get(this.id);
 
