@@ -1,0 +1,25 @@
+{
+  "name": "content_scripts_webpack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "process": "^0.11.10",
+    "webpack": "^5.105.4",
+    "webpack-cli": "^7.0.2"
+  },
+  "dependencies": {
+    "@tensorflow/tfjs": "^4.22.0",
+    "natural": "^8.1.1",
+    "os-browserify": "^0.3.0",
+    "scikitjs": "^1.24.0",
+    "util": "^0.12.5"
+  }
+}

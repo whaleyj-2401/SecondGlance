@@ -1,0 +1,243 @@
+<!DOCTYPE HTML>
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+
+        <style>
+            body {
+                display: grid;
+                grid-template-columns: auto auto;
+                grid-template-rows: 25 50 25;
+
+            }
+
+            #TEST_HEADER {
+                grid-row: 1 / 2;
+                grid-column: 1 / 3;
+            }
+
+            #AD_TEST {
+                grid-row: 2 / 3;
+                grid-column: 1 / 2;
+            }
+
+            #FEATURE_TEST {
+                grid-row: 2 / 3;
+                grid-column: 2 / 3;
+            }
+
+            #SCANNER_TEST {
+                grid-row: 3 / 4;
+                grid-column: 1 / 3;
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+        <div id="TEST_HEADER">
+            <h1>TEST PAGE for SECONDGLANCE</h1>
+        </div>
+
+        <div id="TEST_BODY">
+
+            <div id="AD_TEST">
+
+                <h2>Popup test</h2>
+
+                <iframe src="adblock-popup-test/news-popup">
+                </iframe>
+
+                <img src="adblock-popup-test/news-popup-img.png">
+                </img>
+
+                <div class="news-popup">
+                    <span>POPUP BLOCKER FAILED</span>
+                </div>
+
+                <div class="modal">
+                    <span>POPUP BLOCKER FAILED</span>
+                </div>
+
+                <div class="shopping-overlay">
+                    <span>POPUP BLOCKER FAILED</span>
+                </div>
+
+                <div class="dialog">
+                    <span>POPUP BLOCKER FAILED</span>
+                </div>
+
+                <div role="dialog">
+                    <span>POPUP BLOCKER FAILED</span>
+                </div>
+
+                <div aria-modal="true">
+                    <span>POPUP BLOCKER FAILED</span>
+                </div>
+
+                <div class="subscribe">
+                    <span>POPUP BLOCKER FAILED</span>
+                </div>
+
+                <div class="newsletter">
+                    <span>POPUP BLOCKER FAILED</span>
+                </div>
+
+                <h2>Banner test</h2>
+
+                <iframe src="adblock-banner-test/adsense">
+                </iframe>
+
+                <iframe src="adblock-banner-test/doubleclick-here">
+                </iframe>
+
+                <iframe src="adblock-banner-test/googlesyndication">
+                </iframe>
+
+                <div id="ad-banner">
+                    <span>BANNER BLOCKER FAILED</span>
+                </div>
+
+                <div class="ads">
+                    <span>BANNER BLOCKER FAILED</span>
+                </div>
+
+                <div class="advert">
+                    <span>BANNER BLOCKER FAILED</span>
+                </div>
+
+                <img src="adblock-banner-test/ad.png">
+                </img>
+
+                <img src="adblock-banner-test/ads.png">
+                </img>
+
+                <img src="adblock-banner-test/doubleclick-img.png">
+                </img>
+
+                <section class="sponsor">
+                    <span>BANNER BLOCKER FAILED</span>
+                </section>
+
+                <div class="sponsor">
+                    <span>BANNER BLOCKER FAILED</span>
+                </div>
+
+            </div>
+
+            <div id="FEATURE_TEST">
+                <h2>Feature Remover Test</h2>
+
+                <h3>Base mode tests</h3>
+
+                <iframe src="feature-base-test/intercom-chat">
+                </iframe>
+
+                <div id="intercom-container">
+                    <span>BASE MODE FAILED OR IS NOT ENGAGED</span>
+                </div>
+
+                <div class="intercom-lightweight-app">
+                    <span>BASE MODE FAILED OR IS NOT ENGAGED</span>
+                </div>
+
+                <div class="intercom-launcher">
+                    <span>BASE MODE FAILED OR IS NOT ENGAGED</span>
+                </div>
+
+                <iframe src="feature-base-test/ml-drift">
+                </iframe>
+
+                <div id="drift-widget">
+                    <span>BASE MODE FAILED OR IS NOT ENGAGED</span>
+                </div>
+
+                <div class="drift-frame-controller">
+                    <span>BASE MODE FAILED OR IS NOT ENGAGED</span>
+                </div>
+
+                <iframe src="feature-base-test/zendesk-assist">
+                </iframe>
+
+                <iframe src="feature-base-test/zdassets">
+                </iframe>
+
+                <div class="zEWidget-launcher">
+                    <span>BASE MODE FAILED OR IS NOT ENGAGED</span>
+                </div>
+
+                <iframe src="feature-base-test/tawk.to">
+                </iframe>
+
+                <iframe src="feature-base-test/crisp.chat">
+                </iframe>
+
+                <div class="crisp-client">
+                    <span>BASE MODE FAILED OR IS NOT ENGAGED</span>
+                </div>
+
+                <iframe src="feature-base-test/hubspot">
+                </iframe>
+
+                <div class="hs-chat-widget">
+                    <span>BASE MODE FAILED OR IS NOT ENGAGED</span>
+                </div>
+
+                <iframe src="feature-base-test/facebook.com/plugins/customerchat">
+                </iframe>
+
+                <h3>Agg. mode tests</h3>
+
+                <div id="chat-bot">
+                    <span>AGGRESSIVE MODE FAILED OR IS NOT ENGAGED</span>
+                </div>
+
+                <div class="chat-bot">
+                    <span>AGGRESSIVE MODE FAILED OR IS NOT ENGAGED</span>
+                </div>
+
+                <div id="personal-assistant">
+                    <span>AGGRESSIVE MODE FAILED OR IS NOT ENGAGED</span>
+                </div>
+
+                <div class="personal-assistant">
+                    <span>AGGRESSIVE MODE FAILED OR IS NOT ENGAGED</span>
+                </div>
+
+                <div id="ai-support">
+                    <span>AGGRESSIVE MODE FAILED OR IS NOT ENGAGED</span>
+                </div>
+
+                <div class="ai-support">
+                    <span>AGGRESSIVE MODE FAILED OR IS NOT ENGAGED</span>
+                </div>
+
+                <div id="talk-widget">
+                    <span>AGGRESSIVE MODE FAILED OR IS NOT ENGAGED</span>
+                </div>
+
+                <div class="talk-widget">
+                    <span>AGGRESSIVE MODE FAILED OR IS NOT ENGAGED</span>
+                </div>
+
+                <button aria-label="chat">Chat</button>
+                <button aria-label="help">Help</button>
+                <button aria-label="support">Support</button>
+
+            </div>
+
+            <div id="SCANNER_TEST">
+                <p>This should be highlit.</p>
+                <span>Not the current one.</span>
+                <h3>This one yes.</h3>
+            </div>
+
+        </div>
+
+    </body>
+
+</html>
