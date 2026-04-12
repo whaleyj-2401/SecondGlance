@@ -1,7 +1,7 @@
 // settings.js
 // This file contains an object which contains various functions used for
 // creating a dynamic settings page.
-// Code by James Whaley
+// Code by James Whaley and Kelowna Ngoyi
 
 let optionsArr = {
 
