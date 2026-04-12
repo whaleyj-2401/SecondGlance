@@ -2,6 +2,7 @@
  *  AdBlocker
  * ===========
  * Module which hides advertisements in a web page.
+ * Code by Kelowna Ngoyi
  */
 class AdBlocker extends Module
 {
