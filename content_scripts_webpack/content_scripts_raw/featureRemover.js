@@ -4,6 +4,7 @@ import {Module} from "./module.js";
  *  FeatureRemover
  * ================
  * Class which removes unwanted features from the web page.
+ * Code by Andrew Detering
  */
 
 export class FeatureRemover extends Module
