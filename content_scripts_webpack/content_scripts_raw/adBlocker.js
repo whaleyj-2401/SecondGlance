@@ -4,6 +4,7 @@ import {Module} from "./module.js";
  *  AdBlocker
  * ===========
  * Module which hides advertisements in a web page.
+ * Code by Kelowna Ngoyi
  */
 export class AdBlocker extends Module
 {
