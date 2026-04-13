@@ -48,11 +48,9 @@ export class AdBlocker extends Module
 
         // Make sure settings are enabled and valid
         if (!this.settings || !this.settings.enabled) {
-            //this._running = false;
+            this._running = false;
             return;
         }
-
-        // TODO: Implement URL whitelisting logic here
 
         const blockEverything = this.settings.blockAll;
         // Popup ads
@@ -85,19 +83,12 @@ export class AdBlocker extends Module
                 "iframe[src*='ads']",
                 "iframe[src*='doubleclick']",
                 "iframe[src*='googlesyndication']",
-                //"div[id*='ad']",
                 "div[class*='ad-']",
-                //"div[class*='_ad_']",
                 "div[class*='ads']",
                 "div[class*='advert']",
-                //"div[id*='-ad-']",
-                //"div[id*='_ad_']",
-                //"div[class*='-ad-']",
-                //"img[src*='ad']",
                 "img[src*='ads']",
                 "img[src*='doubleclick']",
                 "[data-ad]",
-                //"[aria-label*='ad']",
                 "section[class*='sponsor']",
                 "div[class*='sponsor']"
             ];
@@ -109,17 +100,7 @@ export class AdBlocker extends Module
                 });
             });
         }
-        /*
-        // text-based ad detection
-        document.querySelectorAll("div, iframe, section, img, article").forEach(element => {
-            const text = element.innerText?.toLowerCase();
-            if (text && (text.includes("sponsored") ||
-                text.includes("advertisement"))) {
-                this.hideElement(element);
-            }
-        });
-        */
-
+        
         // Mutation Observer to detect dynamically loaded ads
         if (!this._observer) {
             this._observer = new MutationObserver(() => {
@@ -131,13 +112,13 @@ export class AdBlocker extends Module
                 subtree: true
             });
         }
+        
         this._running = false;
     }
 
     hideElement(element)
     {
         element.style.display = "none";
-        // element.remove();
 
         // Highlight ads for testing purposes
         /*

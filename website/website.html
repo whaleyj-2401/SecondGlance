@@ -1,52 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-        <title>SecondGlance</title>
-        <link rel="stylesheet" href="website_styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecondGlance</title>
+    <link rel="stylesheet" href="website_styles.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <h1>SecondGlance</h1>
-    <p>A browser extension that detects ads, AI-generated content and black unwanted AI features</p>
 
+<nav class="navbar">
+    <div class="logo-container">
+        <img src="../extension/icons/second_glance_logo_2.png" class="logo-img">
+        <span class="logo-text">SecondGlance</span>
+    </div>
+
+    <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#features">Features</a>
+        <a href="#installation">Install</a>
+        <a href="#usage">Usage</a>
+        <a href="#docs">Docs</a>
+        <a href="#demo">Demo</a>
+        <a href="#team">Team</a>
+    </div>
+</nav>
+
+<section class="hero">
+    <h1>Smarter Browsing with SecondGlance</h1>
+    <p>
+        Detect ads, identify AI-generated content, and block unwanted AI features
+        for a cleaner and safer browsing experience.
+    </p>
+</section>
+
+<section id="features" class="section">
     <h2>Features</h2>
-    <ul>
-        <li>Detects and blocks intrusive advertisements</li>
-        <li>Identifies AI-generated content</li>
-        <li>Blocks unwanted AI features</li>
-    </ul>
+    <div class="features-grid">
+        <div class="feature-card">
+            <h3>Ad Blocking</h3>
+            <p>Remove intrusive ads for a cleaner browsing experience.</p>
+        </div>
 
+        <div class="feature-card">
+            <h3>AI Detection</h3>
+            <p>Scan and detect AI-generated content across websites.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>Feature Control</h3>
+            <p>Disable unwanted AI features instantly.</p>
+        </div>
+    </div>
+</section>
+
+<section id="installation" class="section">
     <h2>Installation</h2>
-    <p>To install SecondGlance, follow these steps:</p>
     <ol>
-        <li>Download the extension from the Chrome Web Store or Firefox Add-ons.</li>
-        <li>Click "Add to Chrome" or "Add to Firefox" and confirm the installation.</li>
-        <li>Once installed, you can access the settings by clicking on the extension icon
-            in your browser toolbar.</li>
+        <li>Download from Chrome Web Store or Firefox Add-ons</li>
+        <li>Click install</li>
+        <li>Access settings via the extension icon</li>
     </ol>
+</section>
 
+<section id="usage" class="section">
     <h2>Usage</h2>
-    <p>After installing SecondGlance, it will automatically start detecting ads and 
-        AI-generated content on the websites you visit. You can customize the settings
-        to suit your preferences.</p>
+    <p>
+        The extension runs automatically. Customize settings anytime
+        to control ads and AI detection.
+    </p>
+</section>
 
+<section id="team" class="section">
     <h2>Team</h2>
     <ul>
         <li>Andrew Detering</li>
         <li>Kelowna Ngoyi</li>
         <li>James Whaley</li>
     </ul>
-    <p>SecondGlance is developed by a team of passionate developers dedicated to creating
-        a better browsing experience.</p>
+</section>
 
+<section id="docs" class="section">
     <h2>Documentation</h2>
     <ul>
-        <li><a href="docs/report1.pdf">Report1</a></li>
-        <li><a href="docs/report2.pdf">Report2</a></li>
-        <li><a href="docs/report3.pdf">Report3</a></li>
+        <li><a href="docs/requirements.pdf">Requirements</a></li>
+        <li><a href="docs/uc.pdf">Use Cases</a></li>
     </ul>
+</section>
 
-    <h2>Demo Page</h2>
-    <a href="demo_page/demo_page.html">Test our extension here</a>
+<section id="demo" class="section">
+    <h2>Demo</h2>
+    <a class="button" href="../demo_page/demo_page.html">Try Demo Page</a>
+</section>
 
 </body>
 </html>
