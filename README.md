@@ -38,6 +38,8 @@ To train a new Naive Bayes,
 5. Place the "generated_text.csv" file in the "machine_learning/node_ml" directory
 6. Run "main_natural.js" in Node (navigate to node_ml and run "node main_natural.js")
 
+NOTE: Scikit.js has bad import statements on a fresh install. I'm not sure how to resolve it simply, I just went through the dist directory and changed the imports manually. Some of them don't have the ".js" extension.
+
 Machine learning model is trained on the following data:
 1. https://www.kaggle.com/datasets/thedrcat/daigt-v2-train-dataset
 2. https://www.kaggle.com/datasets/denvermagtibay/ai-generated-essays-dataset
