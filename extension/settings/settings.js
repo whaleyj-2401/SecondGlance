@@ -42,19 +42,24 @@ let optionsArr = {
     },
 
     "Text Scanner" : {
-        moduleName : "Text Scanner",
+    moduleName : "Text Scanner",
 
-        delimiter : {
-            "type" : "text",
-            "default" : "."
-        },
+    delimiter : {
+        "type" : "text",
+        "default" : "."
+    },
 
-        model : {
-            "type" : "select_exclusive",
-            "default" : -1,
-            "Test" : -1
-        }
+    model : {
+        "type" : "select_exclusive",
+        "default" : -1,
+        "Test" : -1
+    },
+
+    scanChunkSize : {
+        "type" : "text",
+        "default" : "500"
     }
+}
 };
 
 let generalOptions = {
