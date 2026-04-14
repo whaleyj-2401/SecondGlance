@@ -8,7 +8,7 @@ Senior project of James Whaley, Kelowna Ngoyi, and Andrew Detering.
 To build from the source, follow these steps:
 
 1. Clone the repository
-2. Assemble the Naive Bayes model (In Linux, navigate to "/extension/ml_serialized" and run "cat naiveBayesNatural.json.part* > naiveBayesNatural.json")
+2. Assemble the Naive Bayes model (In Linux, navigate to "/extension/ml_serialized" and run "cat naiveBayesNatural.json.part* > naiveBayesNatural.json". In windows, a similar approach could probably be used with the windows terminal)
 3. The extension can now be loaded unpacked in Firefox or Chrome
 
 In Firefox, 
