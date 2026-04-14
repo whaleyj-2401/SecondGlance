@@ -83,14 +83,18 @@ export class AdBlocker extends Module
                 "iframe[src*='ads']",
                 "iframe[src*='doubleclick']",
                 "iframe[src*='googlesyndication']",
-                "div[class*='ad-']",
-                "div[class*='ads']",
-                "div[class*='advert']",
+                "iframe[src*='adservice']",
+                "[class*='ad-']",
+                "[class*='ads']",
+                "[class*='advert']",
+                "[class*='sponsor']",
                 "img[src*='ads']",
                 "img[src*='doubleclick']",
+                "img[src*='googlesyndication']",
+                "img[src*='simgad']",
+                "img[src*='adservice']",
                 "[data-ad]",
                 "section[class*='sponsor']",
-                "div[class*='sponsor']"
             ];
             
             // Iterate through each selector and hide matching elements
