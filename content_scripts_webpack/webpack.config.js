@@ -1,3 +1,6 @@
+// Configuration file for Webpack
+// Written with the help of the documentation at webpack.js.org
+
 import webpack from "webpack";
 import { createRequire } from "node:module";
 const require = createRequire(import.meta.url);

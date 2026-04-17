@@ -1,7 +1,7 @@
 // settings.js
 // This file contains an object which contains various functions used for
 // creating a dynamic settings page.
-// Code by James Whaley and Kelowna Ngoyi
+// Code by James Whaley
 
 let optionsArr = {
 
@@ -38,12 +38,20 @@ let optionsArr = {
             "default" : true,
             "Aggressive Mode" : true,
             "Base Mode" : false
+        },
+
+        aiRemovalEnabled : {
+            "type" : "select_exclusive",
+            "default" : true,
+            "Enabled" : true,
+            "Disabled" : false
         }
     },
 
     "Text Scanner" : {
     moduleName : "Text Scanner",
 
+<<<<<<< adetering04-patch-2
     delimiter : {
         "type" : "text",
         "default" : "."
@@ -58,6 +66,14 @@ let optionsArr = {
     scanChunkSize : {
         "type" : "text",
         "default" : "500"
+=======
+        model : {
+            "type" : "select_exclusive",
+            "default" : -1,
+            "Test" : -1,
+            "Naive Bayes" : 0
+        }
+>>>>>>> main
     }
 }
 };
