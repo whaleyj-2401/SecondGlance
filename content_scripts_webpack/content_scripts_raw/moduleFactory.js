@@ -7,6 +7,7 @@ import {TextScanner} from "./textScanner.js";
  * ===============
  * Objects of this class are responsible for instantiating subclasses of the
  * "Module" class. Does this by mapping numbers to each subclass.
+ * Code by James Whaley
  */
 
 export class ModuleFactory
