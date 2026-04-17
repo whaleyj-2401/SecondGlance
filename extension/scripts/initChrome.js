@@ -1264,21 +1264,24 @@ let optionsArr = {
             "default" : true,
             "Aggressive Mode" : true,
             "Base Mode" : false
+        },
+
+        aiRemovalEnabled : {
+            "type" : "select_exclusive",
+            "default" : true,
+            "Enabled" : true,
+            "Disabled" : false
         }
     },
 
     "Text Scanner" : {
         moduleName : "Text Scanner",
 
-        delimiter : {
-            "type" : "text",
-            "default" : "."
-        },
-
         model : {
             "type" : "select_exclusive",
-            "default" : -1,
-            "Test" : -1
+            "default" : 0,
+            "Test" : -1,
+            "Naive Bayes" : 0
         }
     }
 };
