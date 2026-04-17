@@ -49,33 +49,20 @@ let optionsArr = {
     },
 
     "Text Scanner" : {
-    moduleName : "Text Scanner",
-
-<<<<<<< adetering04-patch-2
-    delimiter : {
-        "type" : "text",
-        "default" : "."
-    },
-
-    model : {
-        "type" : "select_exclusive",
-        "default" : -1,
-        "Test" : -1
-    },
-
-    scanChunkSize : {
-        "type" : "text",
-        "default" : "500"
-=======
+        moduleName : "Text Scanner",
+    
+        scanChunkSize : {
+            "type" : "text",
+            "default" : "500"
+        },
+            
         model : {
             "type" : "select_exclusive",
             "default" : -1,
             "Test" : -1,
             "Naive Bayes" : 0
         }
->>>>>>> main
     }
-}
 };
 
 let generalOptions = {
