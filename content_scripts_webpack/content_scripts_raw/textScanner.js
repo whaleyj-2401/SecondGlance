@@ -12,6 +12,7 @@ import PorterStemmer from "natural/lib/natural/stemmers/porter_stemmer.js";
  * Module that scans text. Searches HTML elements for text, and uses a
  * child class of the TextScanningModel class to come to a decision about
  * input pieces of text.
+ * Code by James Whaley and Andrew Detering
  */
 
 export class TextScanner extends Module
