@@ -54,6 +54,11 @@ let optionsArr = {
     "Text Scanner" : {
         moduleName : "Text Scanner",
 
+        scanChunkSize : {
+            "type" : "text",
+            "default" : "500"
+        },
+
         model : {
             "type" : "select_exclusive",
             "default" : 0,
