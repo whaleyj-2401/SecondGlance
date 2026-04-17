@@ -1,3 +1,6 @@
+// Contains wrapper classes for text scanning ML models used in the project.
+// Code by James Whaley
+
 import BayesClassifier from "natural/lib/natural/classifiers/bayes_classifier.js";
 import PorterStemmer from "natural/lib/natural/stemmers/porter_stemmer.js";
 
