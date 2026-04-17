@@ -1,5 +1,5 @@
-// TODO: Iterate through the numbers in the ModuleFactory class. Instantate
-//       each object, run its function, check the result, and destroy it.
+// Contains the main function. Execution begins and ends here.
+// Code by James Whaley
 
 import {ModuleFactory} from "./moduleFactory.js";
 
