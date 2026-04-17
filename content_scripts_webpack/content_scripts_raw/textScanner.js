@@ -29,6 +29,11 @@ export class TextScanner extends Module
                 "default" : 0,
                 "Test" : -1,
                 "Naive Bayes" : 0
+            },
+
+            scanChunkSize : {
+                "type" : "text",
+                "default" : "500"
             }
         }
     }
@@ -56,36 +61,60 @@ export class TextScanner extends Module
         for (let i = 0; i < textElementTags.length; i++)
         {
             bodyElements = bodyElements.concat(
-                document.getElementsByTagName(textElementTags[i])
+                Array.from(document.getElementsByTagName(textElementTags[i]))
             );
+        }
+
+        let chunkSize = parseInt(this.settings["scanChunkSize"], 10);
+
+        if (isNaN(chunkSize) || chunkSize < 1)
+        {
+            chunkSize = 500;
         }
 
         for (let i = 0; i < bodyElements.length; i++)
         {
-            for (let j = 0; j < bodyElements[i].length; j++)
+            let innerText = bodyElements[i].innerText;
+
+            if (!innerText || innerText.length <= 50)
             {
-                let innerText = bodyElements[i][j].innerText;
+                continue;
+            }
 
-                if (innerText.length > 50)
+            let flagged = false;
+
+            for (let j = 0; j < innerText.length; j += chunkSize)
+            {
+                let textChunk = innerText.slice(j, j + chunkSize);
+
+                if (textChunk.length <= 50)
                 {
-                    let result = model.scanText(innerText);
-
-                    /*
-                    console.log(innerText,
-                                "\nLength: ",
-                                innerText.length,
-                                "\nValue: ",
-                                result,
-                                "\nResult type: ",
-                                typeof(result));
-                    */
-
-                    if (result === 1)
-                    {
-                        bodyElements[i][j].style.backgroundColor = "black";
-                        bodyElements[i][j].style.color = "white";
-                    }
+                    continue;
                 }
+
+                let result = model.scanText(textChunk);
+
+                /*
+                console.log(textChunk,
+                            "\nLength: ",
+                            textChunk.length,
+                            "\nValue: ",
+                            result,
+                            "\nResult type: ",
+                            typeof(result));
+                */
+
+                if (result === 1)
+                {
+                    flagged = true;
+                    break;
+                }
+            }
+
+            if (flagged)
+            {
+                bodyElements[i].style.backgroundColor = "black";
+                bodyElements[i].style.color = "white";
             }
         }
     }
