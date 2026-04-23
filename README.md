@@ -45,5 +45,5 @@ To train a new Naive Bayes,
 NOTE: Scikit.js has bad import statements on a fresh install. I'm not sure how to resolve it simply, I just went through the dist directory and changed the imports manually. Some of them don't have the ".js" extension.
 
 Machine learning model is trained on the following data:
-1. K&#322eczek, D. (2023, 11). DAIGT V2 Train Dataset. (Version 2) [Dataset]. https://www.kaggle.com/datasets/thedrcat/daigt-v2-train-dataset
+1. Kłeczek, D. (2023, 11). DAIGT V2 Train Dataset. (Version 2) [Dataset]. https://www.kaggle.com/datasets/thedrcat/daigt-v2-train-dataset
 2. Magtibay, D. (2025, 07). AI Generated Text Dataset. (Version 1) [Dataset]. https://www.kaggle.com/datasets/denvermagtibay/ai-generated-essays-dataset
