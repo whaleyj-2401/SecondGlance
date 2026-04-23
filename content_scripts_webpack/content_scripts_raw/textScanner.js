@@ -1,3 +1,25 @@
+/*
+ * Copyright 2026 Andrew Detering, Kelowna Ngoyi, James Whaley
+ *
+ * This file is part of SecondGlance.
+ *
+ * SecondGlance is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation, either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * SecondGlance is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with SecondGlance. If not, see <https://www.gnu.org/licenses/>.
+ */
+
+// Contains the TextScanner class for scanning webpages for AI text.
+// Code by James Whaley and Andrew Detering
+
 import {Module} from "./module.js";
 import {TextScanningModel} from "./textScanningModel.js";
 import {TestTSM} from "./textScanningModel.js";
