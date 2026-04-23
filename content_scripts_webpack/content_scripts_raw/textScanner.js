@@ -3,9 +3,6 @@ import {TextScanningModel} from "./textScanningModel.js";
 import {TestTSM} from "./textScanningModel.js";
 import {TextScanningModelFactory} from "./textScanningModel.js";
 
-import BayesClassifier from "natural/lib/natural/classifiers/bayes_classifier.js";
-import PorterStemmer from "natural/lib/natural/stemmers/porter_stemmer.js";
-
 /* =============
  *  TextScanner
  * =============
@@ -25,16 +22,16 @@ export class TextScanner extends Module
 
             moduleName : "Text Scanner",
 
+            "Shortest Scannable Paragraph (Characters)" : {
+                "type" : "text",
+                "default" : "100"
+            },
+
             model : {
                 "type" : "select_exclusive",
                 "default" : 0,
                 "Test" : -1,
                 "Naive Bayes" : 0
-            },
-
-            scanChunkSize : {
-                "type" : "text",
-                "default" : "500"
             }
         }
     }
@@ -66,53 +63,33 @@ export class TextScanner extends Module
             );
         }
 
-        let chunkSize = parseInt(this.settings["scanChunkSize"], 10);
+        let minLength = parseInt(
+            this.settings["Shortest Scannable Paragraph (Characters)"],
+            10
+        );
 
-        if (isNaN(chunkSize) || chunkSize < 1)
-        {
-            chunkSize = 500;
-        }
+        if (isNaN(minLength) || minLength < 1)
+            minLength = 100;
 
         for (let i = 0; i < bodyElements.length; i++)
         {
             let innerText = bodyElements[i].innerText;
 
-            if (!innerText || innerText.length <= 50)
-            {
+            if (!innerText || innerText.length <= minLength)
                 continue;
-            }
 
-            let flagged = false;
+            let result = model.scanText(innerText);
 
-            for (let j = 0; j < innerText.length; j += chunkSize)
-            {
-                let textChunk = innerText.slice(j, j + chunkSize);
+            /*
+            console.log("Scanned: ",
+                        innerText,
+                        "\nLength: ",
+                        innerText.length,
+                        "\nValue: ",
+                        result);
+            */
 
-                if (textChunk.length <= 50)
-                {
-                    continue;
-                }
-
-                let result = model.scanText(textChunk);
-
-                /*
-                console.log(textChunk,
-                            "\nLength: ",
-                            textChunk.length,
-                            "\nValue: ",
-                            result,
-                            "\nResult type: ",
-                            typeof(result));
-                */
-
-                if (result === 1)
-                {
-                    flagged = true;
-                    break;
-                }
-            }
-
-            if (flagged)
+            if (result === 1)
             {
                 bodyElements[i].style.backgroundColor = "black";
                 bodyElements[i].style.color = "white";
