@@ -54,9 +54,9 @@ let optionsArr = {
     "Text Scanner" : {
         moduleName : "Text Scanner",
 
-        scanChunkSize : {
+        "Shortest Scannable Paragraph (Characters)" : {
             "type" : "text",
-            "default" : "500"
+            "default" : "100"
         },
 
         model : {
