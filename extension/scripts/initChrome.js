@@ -1,3 +1,22 @@
+/*
+ * Copyright 2026 Andrew Detering, Kelowna Ngoyi, James Whaley
+ *
+ * This file is part of SecondGlance.
+ *
+ * SecondGlance is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation, either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * SecondGlance is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with SecondGlance. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 // initChrome.js
 // File contains code from the init.js file. It also contains code from
 // browser-polyfill.js. Code was consolidated here because service workers
@@ -1228,6 +1247,13 @@
              }
         });
 //# sourceMappingURL=browser-polyfill.js.map
+
+// The following is code to be run on installation/update of the software.
+// The purpose of this code is to check for settings stored within the
+// browser's local storage. If settings are not found, then default settings
+// are automatically generated from the definitions of the modules in the
+// system.
+// Code by James Whaley (Except for the optionsArr object).
 
 let optionsArr = {
 
