@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
     "name": "SecondGlance",
-    "description": "A unified content filter.",
-    "version": "0.2",
+    "description": "Hides ads and unwanted AI features. Detects AI generated text without sending browsing data to remote locations.",
+    "version": "1.0",
 
     "browser_specific_settings":
     {
