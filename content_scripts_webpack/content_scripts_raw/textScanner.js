@@ -60,8 +60,6 @@ export class TextScanner extends Module
 
     async scanPage()
     {
-        console.log("Textscanner Scanpage running.");
-
         let modelFact = new TextScanningModelFactory();
         let model = await modelFact.createModel(this.settings["model"]);
 
