@@ -3,7 +3,7 @@ SecondGlance is a browser extension that enables content blocking and detection 
 
 Extension is cross-platform. Tested on Firefox and Chrome.
 
-Note: If you use this, be aware that AI text detection in general is not reliable enough for use in any administrative, moderative, or legal purpose. Our machine learning model was trained on part of the data we used and tested on the other part. The code we used to train and test the ML model is located in the machine_learning directory (machine_learning/node_ml/main_natural.js).
+Disclaimer: If you use this, be aware that AI text detection in general is not reliable enough for use in any administrative, moderative, or legal purpose. Our machine learning model was trained on part of the data we used and tested on the other part. The code we used to train and test the ML model is located in the machine_learning directory (machine_learning/node_ml/main_natural.js).
 
 <b>No output from this extension should be used as a basis for any sort of accusation!</b>
 
