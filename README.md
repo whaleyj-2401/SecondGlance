@@ -1,7 +1,7 @@
 A unified, configurable, and extensible solution for customizing your web experience.
 SecondGlance is a browser extension that enables content blocking and detection of AI-generated text within a webpage.
 
-Extension is cross-platform. Tested on Firefox and Chrome.
+Extension is cross-platform. Tested on Firefox, Chrome, and Edge.
 
 Disclaimer: If you use this, be aware that AI text detection in general is not reliable enough for use in any administrative, moderative, or legal purpose. Our machine learning model was trained on part of the data we used and tested on the other part. The code we used to train and test the ML model is located in the machine_learning directory (machine_learning/node_ml/main_natural.js).
 
@@ -13,15 +13,15 @@ To build from the source, follow these steps:
 
 1. Clone the repository
 2. Assemble the Naive Bayes model (In Linux, navigate to "/extension/ml_serialized" and run "cat naiveBayesNatural.json.part* > naiveBayesNatural.json". In windows, a similar approach could probably be used with the windows terminal)
-3. The extension can now be loaded unpacked in Firefox or Chrome
+3. The extension can now be loaded unpacked in Firefox, Chrome, or Edge
 
 In Firefox, 
 1. Navigate to "about:debugging" and click on "this firefox"
 2. Click "Load temporary addon"
 3. Double click "manifest.json" inside the extension directory
 
-In Chrome,
-1. Navigate to "chrome://extensions"
+In Chromium-based browsers (Chrome and Edge),
+1. Navigate to "chrome://extensions" (or "edge://extensions" or similar)
 2. Switch on Developer Mode
 3. Click "Load unpacked"
 4. Navigate to the extension directory
