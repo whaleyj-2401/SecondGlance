@@ -44,7 +44,7 @@ async function main()
             isEnabledHere = false;
         else if (module.settings.urlListEnabled)
         {
-            console.log(module.settings.urlList);
+            //console.log(module.settings.urlList);
 
             if (module.settings.isWhitelist)
             {
